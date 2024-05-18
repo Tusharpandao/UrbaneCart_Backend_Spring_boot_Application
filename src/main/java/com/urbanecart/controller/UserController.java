@@ -31,5 +31,21 @@ public class UserController {
 	}
 	
 	
+	
+	public ResponseEntity<?> findUser(@RequestBody User user){
+		
+		User pojoUser =userService.findUser(user);
+		
+		if (pojoUser != null) {
+			
+            return  new ResponseEntity<ResponseStructure<User>>
+            (new ResponseStructure<User>("user found", pojoUser, HttpStatus.OK.value()),HttpStatus.OK);
+			
+		}
+		   return  new ResponseEntity<ResponseStructure<User>>
+           (new ResponseStructure<User>("user found", pojoUser, HttpStatus.NOT_ACCEPTABLE .value()),HttpStatus.NOT_ACCEPTABLE);
+			
+	
+	}
 
 }
