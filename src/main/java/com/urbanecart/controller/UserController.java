@@ -48,5 +48,18 @@ public class UserController {
 			
 	
 	}
+	public ResponseEntity<?> removeUser(@RequestBody  User user){
+		
+        User pojoUser =userService.removeUser(user);
+		
+        
+        if(pojoUser != null) {
+        	return new ResponseEntity<ResponseStructure<User>>
+    		(new ResponseStructure<User>("User remove successfully", pojoUser, HttpStatus.OK.value()),HttpStatus.OK);
+
+        }
+		return new ResponseEntity<ResponseStructure<User>>
+		(new ResponseStructure<User>("User remove successfully", pojoUser, HttpStatus.BAD_REQUEST.value()),HttpStatus.BAD_REQUEST);
+	}
 
 }
