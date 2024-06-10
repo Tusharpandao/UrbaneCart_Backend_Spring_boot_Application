@@ -23,5 +23,15 @@ public class UserService {
 		return userRepository.findByEmail(user.getEmail());
 	}
 
+	public User removeUser(User user) {
+
+		User pojoUser =userRepository.findByEmail(user.getEmail());
+		if(pojoUser!=null) {
+            userRepository.delete(pojoUser);
+            return pojoUser;
+        }
+		return pojoUser;
+	}
+
 
 }
